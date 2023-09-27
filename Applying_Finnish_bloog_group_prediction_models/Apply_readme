@@ -1,0 +1,7 @@
+### Applying Finnish blood group prediction models
+# 27st Sep 2023 Kati Hyvärinen & Jarmo Ritari
+
+# The Finnish models and general blood group information are in Finnish_Blood_group_prediction_models_genes.rds
+# The script for blood group prediction: 
+# 001_Applying_prediction_models.R
+

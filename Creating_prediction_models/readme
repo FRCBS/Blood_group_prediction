@@ -1,0 +1,16 @@
+### Blood group prediction
+### 27th Sep 2023 Kati Hyvärinen & Jarmo Ritari
+
+## Scripts for the data preprocessing and random forest analyses
+# Creates RF models, confusion matrix plots, 
+# boxplots with posterior probabilities, statistics tables, and
+# tables of important variables
+
+# Blood group gene information files "Example_BG_genes" and "Example_BG_gene_rf".
+
+# Execution order:
+# 1. 001_Genotype_preparation.R
+# 2. 002_Phenotype_preparation.R
+# 3. 003_Blood_group_prediction.R
+# 4. 004_Figures_and_tables.R
+
