@@ -1,7 +1,8 @@
 # Blood_group_prediction
 
-[**A machine-learning method for biobank-scale genetic prediction of blood group antigens**](https://www.medrxiv.org/content/10.1101/2023.09.18.23295700v2)**\
-**K Hyvärinen, K Haimila, C Moslemi, Blood Service Biobank, ML Olsson, SR Ostrowski, OB Pedersen, C Erikstrup, J Partanen, J Ritari
+[**A machine-learning method for biobank-scale genetic prediction of blood group antigens**](https://www.medrxiv.org/content/10.1101/2023.09.18.23295700v2)
+
+K Hyvärinen, K Haimila, C Moslemi, Blood Service Biobank, ML Olsson, SR Ostrowski, OB Pedersen, C Erikstrup, J Partanen, J Ritari
 
 ## Prerequisites
 
@@ -9,17 +10,15 @@
 
 2.  bcftools <https://samtools.github.io/bcftools/bcftools.html>
 
-3.  R packets:
+3.  R packets: tidyverse, caret, ranger, data.table, e1071, and ggbeeswarm
 
-    tidyverse, caret, ranger, data.table, e1071, and ggbeeswarm
-
-## 1. Creating prediction models (./Creating_prediction_models/)
+## 1. [Creating prediction models](https://github.com/FRCBS/Blood_group_prediction/tree/main/Creating_prediction_models)
 
 Scripts for your own genotype and blood group data preprocessing and random forest model fitting.
 
 Creates RF models, confusion matrix plots, boxplots with posterior probabilities, statistics tables, and tables of important variables.
 
-## 2. Applying the Finnish models (./Applying_Finnish_blood_group_prediction_models/)
+## 2. [Applying the Finnish models](https://github.com/FRCBS/Blood_group_prediction/tree/main/Applying_Finnish_bloog_group_prediction_models)
 
 The Finnish models and general blood group information are in `Finnish_Blood_group_prediction_models_genes.rds`
 
