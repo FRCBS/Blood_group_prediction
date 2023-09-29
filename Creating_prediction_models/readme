@@ -1,7 +1,7 @@
 ### Blood group prediction
 ### 27th Sep 2023 Kati Hyvärinen & Jarmo Ritari
 
-## Scripts for the data preprocessing and random forest analyses
+## Scripts for your own genotype and blood group data preprocessing and random forest model fitting.
 # Creates RF models, confusion matrix plots, 
 # boxplots with posterior probabilities, statistics tables, and
 # tables of important variables

@@ -7,7 +7,6 @@ library(caret)
 library(ranger)
 library(data.table)
 library(e1071)
-library(missForest)
 
 ############################################################################### 
 ### Import PLINK genotype dosage files
