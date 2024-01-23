@@ -375,8 +375,9 @@ Conf_mat_test <- map(names(Preds_obs), function(x) {
   return(Conf_mat_test)
 })
 
-# Add names to Conf_mat list
+# Add names to Conf_mat list and save as RDS
 names(Conf_mat_test) <- names(Preds_obs)
+saveRDS(Conf_mat_test, file = "results/Conf_mat_test.rds")
 
 ### Train result confusion matrix and statistics
 Conf_mat_train <- map(names(OOB_obs), function(x) {
@@ -394,8 +395,9 @@ Conf_mat_train <- map(names(OOB_obs), function(x) {
   return(Conf_mat_train)
 })
 
-# Add names to Cof_mat_train list
+# Add names to Cof_mat_train list and save as RDS
 names(Conf_mat_train) <- names(OOB_obs)
+saveRDS(Conf_mat_train, file = "results/Conf_mat_train.rds")
 
 ### Full data result confusion matrix and statistics
 Conf_mat_full <- map(names(Full_OOB_obs), function(x) {
@@ -413,8 +415,9 @@ Conf_mat_full <- map(names(Full_OOB_obs), function(x) {
   return(Conf_mat_full)
 })
 
-# Add names to Cof_mat_full list
+# Add names to Cof_mat_full list and save as RDS
 names(Conf_mat_full) <- names(Full_OOB_obs)
+saveRDS(Conf_mat_full, file = "results/Conf_mat_full.rds")
 
 ###############################################################################
 

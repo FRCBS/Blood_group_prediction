@@ -8,6 +8,8 @@ library(ranger)
 library(data.table)
 library(e1071)
 library(ggbeeswarm)
+library(ROCR)
+library(ggplotify)
 
 ###############################################################################
 ## Variables for this script are generated 
@@ -59,6 +61,9 @@ Test_data_CF_table <-  bind_rows(ABO_CF_tables, BG_CF_tables) %>%
                                grepl("P1", Antigen) ~ "P1PK",
                                grepl("Lea|Leb", Antigen) ~ "Lewis",
                                grepl("Lsa", Antigen) ~ "Gerbich" ))
+
+write.table(Test_data_CF_table, "results/Test_data_CF_table", 
+            quote = F, row.names = F, col.names = T)
 
 p.test_data_CF_plots <- ggplot(data = Test_data_CF_table, 
                                mapping = aes(x = Reference, y = Prediction, 
@@ -125,6 +130,9 @@ Train_data_CF_table <-  bind_rows(ABO_CF_tables, BG_CF_tables) %>%
                                grepl("Lea|Leb", Antigen) ~ "Lewis",
                                grepl("Lsa", Antigen) ~ "Gerbich" ))
 
+write.table(Train_data_CF_table, "results/Train_data_CF_table", 
+           quote = F, row.names = F, col.names = T)
+
 p.train_data_CF_plots <- ggplot(data = Train_data_CF_table, 
                                 mapping = aes(x = Reference, y = Prediction, 
                                               fill = goodbad, alpha = 0.5)) +
@@ -189,6 +197,9 @@ Full_data_CF_table <-  bind_rows(ABO_CF_tables, BG_CF_tables) %>%
                                grepl("P1", Antigen) ~ "P1PK",
                                grepl("Lea|Leb", Antigen) ~ "Lewis",
                                grepl("Lsa", Antigen) ~ "Gerbich" ))
+
+write.table(Full_data_CF_table, "results/Full_data_CF_table", 
+            quote = F, row.names = F, col.names = T)
 
 p.full_data_CF_plots <- ggplot(data = Full_data_CF_table, 
                                mapping = aes(x = Reference, y = Prediction, 
@@ -572,6 +583,78 @@ Full_stat_table <- bind_rows(ABO_stat_table, BG_stat_table)%>%
 # Write table
 write.table(Full_stat_table, "results/Full_stat_table", 
             quote = F, row.names = F, col.names = T)
+
+###############################################################################
+### AUROC and Precision-Recall Curves
+
+### Data collection
+# ABO predictions and reference labels
+ABO_ROC_data <- Preds_obs[["ABO"]] %>% 
+  select(-Phenotype, -A_class, -AB_class, -B_class, -O_class)
+TEMP_1 <- pivot_longer(ABO_ROC_data, cols = 2:5, 
+                       names_to = "Antigen", 
+                       values_to = "Posterior_probability") %>% 
+  select(-PhenotypeA, -PhenotypeAB, -PhenotypeB, -PhenotypeO)
+TEMP_2 <- pivot_longer(ABO_ROC_data, cols = 6:9, 
+                       names_to = "Phenotype", 
+                       values_to = "Reference") %>% 
+  select(-A, -AB, -B, -O)
+ABO_ROC_data <- cbind(TEMP_1, TEMP_2[2:3])
+
+# Other antigen predictions and reference labels
+BG_ROC_data <- map_dfr(2:length(Preds_obs), function(x) {
+  TABLE <- Preds_obs[[x]]
+  TABLE <- select(TABLE, -contains("class"), -contains("minus"))
+  TABLE$Antigen <- colnames(TABLE)[2] %>% 
+    str_replace("_plus", "+")
+  colnames(TABLE)[2] <- "Posterior_probability"
+  colnames(TABLE)[4] <- "Reference"
+  return(TABLE)
+})
+
+# Combine predictions and reference labels for all antigens
+All_BG_ROC_data <- bind_rows(ABO_ROC_data, BG_ROC_data)
+
+### ROC curve
+pred <- prediction(All_BG_ROC_data$Posterior_probability,
+                   All_BG_ROC_data$Reference)
+roc_perf <- performance(pred, measure = "tpr", x.measure = "fpr")
+
+# ROC curve as ggplot object
+ROC_figure <- function(){
+  plot(roc_perf, 
+       col = 2,
+       lwd = 2)
+  abline(a = 0, b = 1, lwd = 2, lty = 2, col = "gray")
+}
+p.ROC <- as.ggplot(~ROC_figure()) +
+  annotate("text", x = .7, y = .3, label= "AUC: 99.9% (99.8%-99.9%)",
+           size = 5, color = 'black') 
+
+jpeg('./results/ROC_curve.jpeg', 
+     width=10, height=5, res=600, units='in')
+print(p.ROC)
+dev.off()
+
+### Precision-recall curve
+prec_rec_perf <- performance(pred, "prec", "rec")
+
+# Precision-recall curve as ggplot object
+PREC_REC_figure <- function() {
+  plot(prec_rec_perf,
+       col = 2,
+       lwd = 3)
+  plot(prec_rec_perf,
+       lty = 3,
+       col = "grey78",
+       add = TRUE)
+}
+p.PREC_REC <- as.ggplot(~PREC_REC_figure())
+
+jpeg('./results/Precision_recall_curve.jpeg', 
+     width=10, height=5, res=600, units='in')
+print(p.PREC_REC)
+dev.off()
 
 ###############################################################################
 ### Important variables in blood group RF models may be found in 

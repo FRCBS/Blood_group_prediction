@@ -269,6 +269,7 @@ Prediction_tables <- lapply(1:length(Prediction_results), function(x) {
 # Add names to the Prediction_tables
 names(Prediction_tables) <- names(Prediction_results)
 
-Prediction_table <- Prediction_tables %>% reduce(left_join, by = "releasedIdentifier")
+Prediction_table <- Prediction_tables %>% reduce(left_join, 
+                                                 by = "releasedIdentifier")
 
 ###############################################################################
