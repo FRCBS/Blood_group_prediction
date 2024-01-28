@@ -7,8 +7,7 @@ library(ggbeeswarm)
 
 
 ### Fit xgboost models for glood group antigen prediction
-
-
+# Required objects are generated using "Creating_prediction_models" scripts
 
 ###############################################################################
 ### Functions
@@ -59,15 +58,32 @@ Train_xgboost <- function(x) { # x = data frame element in Train data
 library(tidyverse)
 library(data.table)
 
-BG_phenos <- fread('data/BG_genes/230511_Random_forest_BG_ref_data_GT_n_1192', data.table = F)
-colnames(BG_phenos)
-BG_phenos <- rename(BG_phenos, LWa=Lwa, LWb=Lwb)
-
-Pheno_info <- fread('data/BG_genes/Pheno_info.tsv', data.table = F)
+# BG_phenos and Pheno_info are generated using instructions 
+# in 002_Phenotype_preparation.R
 
 str(BG_phenos)
-str(Pheno_info)
+# Structure specification example
+# tibble [1,192 × 54] (S3: tbl_df/tbl/data.frame), columns:
+# 1. $ releasedIdentifier: chr [1:1192] Sample1" "Sample2" "Sample3" "Sample4" ...
+# 2. $ ABO               : chr [1:1192] "A" "B" "AB" "O" ...
+# 3. $ D                 : chr [1:1192] "D+" "D-" "D+" "D+" ...
+# 4. $ Kpa               : chr [1:1192] "Kpa-" "Kpa-" "Kpa-" "Kpa-" ...
+# 5. $ Kpb               : chr [1:1192] "Kpb+" "Kpb+" "Kpb+" "Kpb+" ...
+# 6. ...  n. column, include all the blood group information into columns   
 
+str(Pheno_info)
+# Structure specification example
+# tibble [53 × 7] (S3: tbl_df/tbl/data.frame)
+# $ Phenotype    : chr [1:53] "ABO" "A1" "A2" "Yta" ...
+# $ BG_system    : chr [1:53] "ABO" "ABO" "ABO" "Cartwright" ...
+# $ Pheno_genes  : chr [1:53] "ABO" "ABO" "ABO" "ACHE" ...
+# $ Gene1        : chr [1:53] "ABO" "ABO" "ABO" "ACHE" ...
+# $ Gene2        : chr [1:53] NA NA NA NA ...
+# $ Gene3        : chr [1:53] NA NA NA NA ...
+# $ Plink_dataset: chr [1:53] "data/BG_genes/ABO_ABO_2K.vcf" "data/BG_genes/ABO_ABO_2K.vcf" ...
+
+# Column Pheno_genes contains all genes separated by _ e.g. GYPA_GYPB_GYPE, RHCE_RHD
+# Column Plink_dataset contains PLINK dataset prefixes generated using 001_Genotype_preparation.R script
 
 
 ###############################################################################
