@@ -2,13 +2,12 @@
 ### 28th Jan 2024 Kati Hyvärinen & Jarmo Ritari
 
 ## Scripts for your own genotype and blood group data preprocessing and random forest model fitting.
-# Creates RF models, confusion matrix plots, 
-# boxplots with posterior probabilities, statistics tables, and
-# tables of important variables
+# Creates RF models, confusion matrix plots, boxplots with posterior probabilities, 
+# statistics tables, and tables of important variables
 
 # Blood group gene information files "Example_BG_genes" and "Example_BG_gene_rf".
 
-# Example file for phenotype coding "Example_BG_phenos" and example file for phenotype-gene links
+# Example files for phenotype coding "Example_BG_phenos" and for phenotype-gene links
 # Example_Pheno_info".
 
 # Execution order:
