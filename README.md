@@ -2,6 +2,8 @@
 
 PLOS Computational Biology
 
+Published: March 21, 2024
+
 [**A machine-learning method for biobank-scale genetic prediction of blood group antigens**](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1011977)
 
 K Hyvärinen, K Haimila, C Moslemi, Blood Service Biobank, ML Olsson, SR Ostrowski, OB Pedersen, C Erikstrup, J Partanen, J Ritari
