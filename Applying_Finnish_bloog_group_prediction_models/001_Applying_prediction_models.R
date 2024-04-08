@@ -163,7 +163,7 @@ modified_dosage <- map(names(important_variables), function(x) {
   # Modify CHR column to include chr and number, e.g. chr9
   EXT_BIM$CHR <- tolower(EXT_BIM$CHR)
   if (grepl("chr", EXT_BIM$CHR[1]) == F) {
-    EXT_BIM$CHR <- paste0("chr", EXT_BIM$CHR[1])
+    EXT_BIM$CHR <- paste0("chr", EXT_BIM$CHR)
   }
  
   # Create "Input_dosage_variant" column based on input data
