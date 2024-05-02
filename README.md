@@ -1,6 +1,6 @@
-# Blood_group_prediction
+# Blood group prediction models
 
-PLOS Computational Biology
+PLOS Computational Biology. 2024 Mar 21;20(3):e1011977. doi: 10.1371/journal.pcbi.1011977. PMID: 38512997
 
 Published: March 21, 2024
 
