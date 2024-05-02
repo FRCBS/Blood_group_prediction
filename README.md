@@ -26,4 +26,4 @@ Creates RF models, confusion matrix plots, boxplots with posterior probabilities
 
 The Finnish models and general blood group information are in `Finnish_Blood_group_prediction_models_genes.rds`
 
-The script for blood group prediction: `001_Applying_prediction_models.R`
+The script and instructions for blood group prediction: `001_Applying_prediction_models.R`
