@@ -14,7 +14,7 @@ K Hyvärinen, K Haimila, C Moslemi, Blood Service Biobank, ML Olsson, SR Ostrows
 
 2.  bcftools <https://samtools.github.io/bcftools/bcftools.html>
 
-3.  R packets: tidyverse, caret, ranger, data.table, e1071, ROCR, ggplotify, and ggbeeswarm
+3.  R packages: tidyverse, caret, ranger, data.table, e1071, ROCR, ggplotify, and ggbeeswarm
 
 ## 1. [Creating prediction models](https://github.com/FRCBS/Blood_group_prediction/tree/main/Creating_prediction_models)
 
