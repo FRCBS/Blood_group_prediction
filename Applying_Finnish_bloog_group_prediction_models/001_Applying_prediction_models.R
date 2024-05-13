@@ -219,7 +219,7 @@ modified_dosage <- map(names(important_variables), function(x) {
                                                              IMPORTANT_BIM$Input_dosage_allele]
   # Identify discrepancy alleles from dosage data and change orientation
   map(INPUT_DOSAGE_DISCR, function(y) {
-    DOSAGE_DATA[,y] <<- recode(DOSAGE_DATA[,y], "0" = 2, "1" = 1, "2" = 0) 
+    DOSAGE_DATA[,y] <<- recode(DOSAGE_DATA[,y] %>% unlist(), "0" = 2, "1" = 1, "2" = 0) 
   })
   
   # Replace input dosage variant names with model variants
