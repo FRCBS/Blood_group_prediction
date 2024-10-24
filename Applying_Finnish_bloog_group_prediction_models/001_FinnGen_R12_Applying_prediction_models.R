@@ -1,7 +1,7 @@
 ###############################################################################
 ### Applying DF10/R12 blood group imputation models for
 ### FinnGen DF10/R12 genotype data
-### Kati Hyv��rinen & Jarmo Ritari
+### Kati HyvÃärinen & Jarmo Ritari
 ###############################################################################
 
 library(tidyverse)
@@ -21,8 +21,6 @@ library(data.table)
 # 6. Folder data/BG_genes/
 
 ###############################################################################
-
-###############################################################################
 ### Import models and blood group information
 
 models_info <- readRDS("data/DF10_Blood_group_prediction_models_genes.rds")
@@ -34,7 +32,7 @@ models_info <- readRDS("data/DF10_Blood_group_prediction_models_genes.rds")
 BG_genes <- as_tibble(read_table("data/Example_BG_genes"))
 str(BG_genes)
 # Structure specification
-# tibble [23 × 3] (S3: tbl_df/tbl/data.frame)
+# tibble [23 Ã— 3] (S3: tbl_df/tbl/data.frame)
 #$ BG_system: chr [1:23] "ABO" "CartwrightYt" "Colton" "Cromer" ...
 #$ Gene1_3  : chr [1:23] "Gene1" "Gene1" "Gene1" "Gene1" ...
 #$ Genes    : chr [1:23] "ABO" "ACHE" "AQP1" "CD55" ...
